@@ -12,7 +12,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.CHAT_IMAGE;
+  static const INITIAL = Routes.HOME;
 
   static final routes = [
     GetPage(
