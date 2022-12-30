@@ -23,37 +23,37 @@ class ChatImageView extends GetView<ChatImageController> {
           icon: const Icon(Icons.arrow_back_ios),
         ),
       ),
-      body: Obx(() => Column(
-            children: [
-              Expanded(
-                child: Center(
-                    child: controller.state.value == ApiState.loading
-                        ? const CircularProgressIndicator()
-                        : controller.state.value == ApiState.success
-                            ? ImageCard(images: controller.images)
-                            : controller.state.value == ApiState.notFound
-                                ? const Center(
-                                    child: Text("Search what ever you want."),
-                                  )
-                                : Center(
-                                    child: Text(
-                                      "Image Generation Failed!",
-                                      textAlign: TextAlign.center,
-                                      style:
-                                          const TextStyle().copyWith(height: 2),
-                                    ),
-                                  )),
-              ),
-              const SizedBox(height: 8),
-              SearchTextFieldWidget(
-                textEditingController: controller.searchTextController,
-                onTap: () {
-                  controller.getGenerateImages(controller.searchTextController.text);
-                },
-              ),
-              const SizedBox(height: 12),
-            ],
-          )),
+      body: Column(
+        children: [
+          Expanded(
+            child: Obx(() => Center(
+                child: controller.state.value == ApiState.loading
+                    ? const CircularProgressIndicator()
+                    : controller.state.value == ApiState.success
+                        ? ImageCard(images: controller.images)
+                        : controller.state.value == ApiState.notFound
+                            ? const Center(
+                                child: Text("Search what ever you want."),
+                              )
+                            : Center(
+                                child: Text(
+                                  "Image Generation Failed!",
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle().copyWith(height: 2),
+                                ),
+                              ))),
+          ),
+          const SizedBox(height: 8),
+          SearchTextFieldWidget(
+            textEditingController: controller.searchTextController,
+            onTap: () {
+              controller
+                  .getGenerateImages(controller.searchTextController.text);
+            },
+          ),
+          const SizedBox(height: 12),
+        ],
+      ),
     );
   }
 }

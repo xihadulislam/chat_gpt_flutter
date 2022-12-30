@@ -65,7 +65,7 @@ class SearchTextFieldWidget extends StatelessWidget {
           ),
           const SizedBox(width: 5),
           InkWell(
-            onTap: textEditingController!.text.isEmpty ? null : onTap,
+            onTap:onTap,
             child: Container(
               decoration: BoxDecoration(
                   color: Colors.green, borderRadius: BorderRadius.circular(40)),
@@ -76,7 +76,7 @@ class SearchTextFieldWidget extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(width: 6)
+          const SizedBox(width: 6)
         ],
       ),
     );

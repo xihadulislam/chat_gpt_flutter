@@ -61,7 +61,7 @@ class ChatImageController extends GetxController {
     } catch (e) {
       print("Errorrrrrrrrrrrrrrr  ");
     } finally {
-      searchTextController.clear();
+     // searchTextController.clear();
       update();
     }
   }
