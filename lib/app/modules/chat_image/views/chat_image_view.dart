@@ -10,12 +10,18 @@ class ChatImageView extends GetView<ChatImageController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.getGenerateImages("cat");
+    // controller.getGenerateImages("cat");
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Chat GPT Images'),
         centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: const Icon(Icons.arrow_back_ios),
+        ),
       ),
       body: Obx(() => Column(
             children: [
@@ -25,14 +31,24 @@ class ChatImageView extends GetView<ChatImageController> {
                         ? const CircularProgressIndicator()
                         : controller.state.value == ApiState.success
                             ? ImageCard(images: controller.images)
-                            : Container()),
+                            : controller.state.value == ApiState.notFound
+                                ? const Center(
+                                    child: Text("Search what ever you want."),
+                                  )
+                                : Center(
+                                    child: Text(
+                                      "Image Generation Failed!",
+                                      textAlign: TextAlign.center,
+                                      style:
+                                          const TextStyle().copyWith(height: 2),
+                                    ),
+                                  )),
               ),
               const SizedBox(height: 8),
               SearchTextFieldWidget(
                 textEditingController: controller.searchTextController,
                 onTap: () {
-                  controller
-                      .getGenerateImages(controller.searchTextController.text);
+                  controller.getGenerateImages(controller.searchTextController.text);
                 },
               ),
               const SizedBox(height: 12),

@@ -1,8 +1,5 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 
 class SearchTextFieldWidget extends StatelessWidget {
   final TextEditingController? textEditingController;
@@ -14,7 +11,6 @@ class SearchTextFieldWidget extends StatelessWidget {
     this.onTap,
   }) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     return _searchTextField();
@@ -22,18 +18,19 @@ class SearchTextFieldWidget extends StatelessWidget {
 
   Widget _searchTextField() {
     return Container(
-      margin: EdgeInsets.only(bottom: 10, left: 4, right: 4),
+      margin: const EdgeInsets.only(bottom: 10, left: 4, right: 4),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Expanded(
             child: Container(
+              margin: const EdgeInsets.only(left: 8),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  borderRadius: const BorderRadius.all(Radius.circular(10)),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(.2),
-                      offset: Offset(0.0, 0.50),
+                      color: Colors.grey.withOpacity(.2),
+                      offset: const Offset(0.0, 0.50),
                       spreadRadius: 1,
                       blurRadius: 1,
                     )
@@ -42,55 +39,44 @@ class SearchTextFieldWidget extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      SizedBox(
-                        width: 20,
-                      ),
+                      const SizedBox(width: 20),
                       Expanded(
-                        child: Container(
-                          child: ConstrainedBox(
-                            constraints: BoxConstraints(maxHeight: 60),
-                            child: Scrollbar(
-                              child: TextField(
-                                style: TextStyle(fontSize: 14),
-                                controller: textEditingController,
-                                maxLines: null,
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: "Open AI Waiting for your query..."),
-                              ),
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(maxHeight: 60),
+                          child: Scrollbar(
+                            child: TextField(
+                              style: const TextStyle(fontSize: 14),
+                              controller: textEditingController,
+                              maxLines: null,
+                              decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText:
+                                      "Open AI Waiting for your query..."),
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(
-                        width: 15,
-                      ),
+                      const SizedBox(width: 15),
                     ],
                   ),
                 ],
               ),
             ),
           ),
-          SizedBox(
-            width: 5,
-          ),
+          const SizedBox(width: 5),
           InkWell(
-            onTap: textEditingController!.text.isEmpty
-                ? null
-                : onTap,
+            onTap: textEditingController!.text.isEmpty ? null : onTap,
             child: Container(
               decoration: BoxDecoration(
-                  color: textEditingController!.text.isEmpty
-                      ? Colors.green.withOpacity(.4)
-                      : Colors.green,
-                  borderRadius: BorderRadius.circular(40)),
-              padding: EdgeInsets.all(10),
-              child: Icon(
+                  color: Colors.green, borderRadius: BorderRadius.circular(40)),
+              padding: const EdgeInsets.all(10),
+              child: const Icon(
                 Icons.send,
                 color: Colors.white,
               ),
             ),
           ),
+          SizedBox(width: 6)
         ],
       ),
     );
