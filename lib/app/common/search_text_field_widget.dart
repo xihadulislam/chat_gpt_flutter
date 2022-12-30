@@ -4,9 +4,11 @@ import 'package:flutter/services.dart';
 class SearchTextFieldWidget extends StatelessWidget {
   final TextEditingController? textEditingController;
   final VoidCallback? onTap;
+  var color;
 
-  const SearchTextFieldWidget({
+   SearchTextFieldWidget({
     Key? key,
+    this.color,
     this.textEditingController,
     this.onTap,
   }) : super(key: key);
@@ -68,7 +70,7 @@ class SearchTextFieldWidget extends StatelessWidget {
             onTap:onTap,
             child: Container(
               decoration: BoxDecoration(
-                  color: Colors.green, borderRadius: BorderRadius.circular(40)),
+                  color: color, borderRadius: BorderRadius.circular(40)),
               padding: const EdgeInsets.all(10),
               child: const Icon(
                 Icons.send,

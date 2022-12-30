@@ -15,6 +15,7 @@ class ChatTextView extends GetView<ChatTextController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.green.withOpacity(0.8),
         title: const Text('ChatTextView'),
         centerTitle: true,
       ),
@@ -63,6 +64,7 @@ class ChatTextView extends GetView<ChatTextController> {
                   )),
           ),
           SearchTextFieldWidget(
+              color: Colors.green.withOpacity(0.8),
               textEditingController: controller.searchTextController,
               onTap: () {
                 controller

@@ -14,6 +14,7 @@ class ChatImageView extends GetView<ChatImageController> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.orange.withOpacity(0.8),
         title: const Text('Chat GPT Images'),
         centerTitle: true,
         leading: IconButton(
@@ -45,6 +46,7 @@ class ChatImageView extends GetView<ChatImageController> {
           ),
           const SizedBox(height: 8),
           SearchTextFieldWidget(
+            color: Colors.orange.withOpacity(0.8),
             textEditingController: controller.searchTextController,
             onTap: () {
               controller
