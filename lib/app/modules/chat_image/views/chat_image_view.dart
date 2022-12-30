@@ -1,11 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chat_gpt_flutter/app/common/headers.dart';
+import 'package:chat_gpt_flutter/app/modules/chat_image/views/widgets/image_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-
 import 'package:get/get.dart';
-import 'package:shimmer/shimmer.dart';
-
+import '../../../common/search_text_field_widget.dart';
 import '../controllers/chat_image_controller.dart';
 
 class ChatImageView extends GetView<ChatImageController> {
@@ -20,47 +17,27 @@ class ChatImageView extends GetView<ChatImageController> {
         title: const Text('Chat GPT Images'),
         centerTitle: true,
       ),
-      body: Center(
-        child: Obx(() => controller.state.value == ApiState.loading
-            ? const CircularProgressIndicator()
-            : controller.state.value == ApiState.success
-                ? MasonryGridView.builder(
-                    gridDelegate:
-                        const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2),
-                    mainAxisSpacing: 3,
-                    crossAxisSpacing: 3,
-                    itemCount: controller.images.length,
-                    itemBuilder: (context, index) {
-                      final generatedImage = controller.images[index];
-
-                      return Card(
-                        child: CachedNetworkImage(
-                          imageUrl: generatedImage.url,
-                          fit: BoxFit.cover,
-                          progressIndicatorBuilder:
-                              (context, url, downloadProgress) => SizedBox(
-                                  height: 150,
-                                  width: 150,
-                                  child: Shimmer.fromColors(
-                                    baseColor: Colors.grey.withOpacity(.3),
-                                    highlightColor: Colors.grey,
-                                    child: Container(
-                                      height: 220,
-                                      width: 130,
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(4)),
-                                    ),
-                                  )),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
-                        ),
-                      );
-                    })
-                : Container()),
-      ),
+      body: Obx(() => Column(
+            children: [
+              Expanded(
+                child: Center(
+                    child: controller.state.value == ApiState.loading
+                        ? const CircularProgressIndicator()
+                        : controller.state.value == ApiState.success
+                            ? ImageCard(images: controller.images)
+                            : Container()),
+              ),
+              const SizedBox(height: 8),
+              SearchTextFieldWidget(
+                textEditingController: controller.searchTextController,
+                onTap: () {
+                  controller
+                      .getGenerateImages(controller.searchTextController.text);
+                },
+              ),
+              const SizedBox(height: 12),
+            ],
+          )),
     );
   }
 }

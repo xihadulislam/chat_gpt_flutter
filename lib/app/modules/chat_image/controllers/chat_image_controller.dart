@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
 import '../../../common/headers.dart';
@@ -27,6 +28,8 @@ class ChatImageController extends GetxController {
   var state = ApiState.notFound.obs;
 
   getGenerateImages(String query) async {
+    print("call   " + query);
+
     state.value = ApiState.loading;
     images.clear();
 
@@ -58,7 +61,14 @@ class ChatImageController extends GetxController {
     } catch (e) {
       print("Errorrrrrrrrrrrrrrr  ");
     } finally {
+      searchTextController.clear();
       update();
     }
+  }
+
+  TextEditingController searchTextController = TextEditingController();
+
+  clearTextField() {
+    searchTextController.clear();
   }
 }
