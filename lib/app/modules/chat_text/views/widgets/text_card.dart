@@ -38,6 +38,7 @@ class TextCard extends StatelessWidget {
                 ),
               ],
             ),
+            const SizedBox(height: 6),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
