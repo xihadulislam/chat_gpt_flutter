@@ -2,7 +2,7 @@
 
 A new chat  gpt  project.
 
-<img src="https://github.com/xihadulislam/chat_gpt_flutter/blob/master/ss/home.png" alt="alt home" style="width:100;height:200">
+<img src="https://github.com/xihadulislam/chat_gpt_flutter/blob/master/ss/home.png" alt="alt home" style="width:50%;height:200">
 
 
 
