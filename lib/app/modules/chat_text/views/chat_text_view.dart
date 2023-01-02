@@ -1,8 +1,7 @@
+import 'package:chat_gpt_flutter/app/modules/chat_text/views/widgets/text_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
-import 'package:share_plus/share_plus.dart';
 
 import '../../../common/headers.dart';
 import '../../../common/search_text_field_widget.dart';
@@ -16,62 +15,36 @@ class ChatTextView extends GetView<ChatTextController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green.withOpacity(0.8),
-        title: const Text('ChatTextView'),
+        title: const Text('Chat GPT Text'),
         centerTitle: true,
       ),
       body: Center(
-        child: Column(children: [
-          Expanded(
-            child: Obx(() => controller.state.value == ApiState.loading
-                ? const Center(child: CircularProgressIndicator())
-                : ListView.builder(
-                    itemCount: controller.messages.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final textData = controller.messages[index];
-                      return Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: [
-                              Text(
-                                textData.text,
-                                style: const TextStyle(fontSize: 18),
-                              ),
-                              const SizedBox(height: 30),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  InkWell(
-                                      onTap: () {
-                                        Share.share(textData.text);
-                                      },
-                                      child: const Icon(Icons.share, size: 35)),
-                                  InkWell(
-                                      onTap: () {
-                                        Clipboard.setData(
-                                            ClipboardData(text: textData.text));
-                                      },
-                                      child: const Icon(Icons.copy, size: 35)),
-                                ],
-                              ),
-                              const SizedBox(height: 10),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  )),
-          ),
-          SearchTextFieldWidget(
-              color: Colors.green.withOpacity(0.8),
-              textEditingController: controller.searchTextController,
-              onTap: () {
-                controller
-                    .getTextCompletion(controller.searchTextController.text);
-              }),
-          const SizedBox(height: 20),
-        ]),
+        child: Obx(() => Column(children: [
+              Expanded(
+                child: ListView.builder(
+                  reverse: true,
+                  itemCount: controller.messages.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final textData = controller.messages[index];
+                    return textData.index == -999999
+                        ? MyTextCard(textData: textData)
+                        : TextCard(textData: textData);
+                  },
+                ),
+              ),
+              controller.state.value == ApiState.loading
+                  ? const Center(child: CircularProgressIndicator())
+                  : const SizedBox(),
+              const SizedBox(height: 12),
+              SearchTextFieldWidget(
+                  color: Colors.green.withOpacity(0.8),
+                  textEditingController: controller.searchTextController,
+                  onTap: () {
+                    controller.getTextCompletion(
+                        controller.searchTextController.text);
+                  }),
+              const SizedBox(height: 20),
+            ])),
       ),
     );
   }

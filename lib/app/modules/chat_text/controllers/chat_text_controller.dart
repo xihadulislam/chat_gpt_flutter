@@ -29,6 +29,8 @@ class ChatTextController extends GetxController {
   var state = ApiState.notFound.obs;
 
   getTextCompletion(String query) async {
+    addMyMessage();
+
     state.value = ApiState.loading;
 
     try {
@@ -44,13 +46,15 @@ class ChatTextController extends GetxController {
         body: encodedParams,
         headers: headerBearerOption(OPEN_AI_KEY),
       );
-
+      print("Response  body     ${response.body}");
       if (response.statusCode == 200) {
-        messages =
-            TextCompletionModel.fromJson(json.decode(response.body)).choices;
+        // messages =
+        //     TextCompletionModel.fromJson(json.decode(response.body)).choices;
+        //
+        addServerMessage(
+            TextCompletionModel.fromJson(json.decode(response.body)).choices);
         state.value = ApiState.success;
       } else {
-        print("Errorrrrrrrrrrrrrrr  ${response.body}");
         // throw ServerException(message: "Image Generation Server Exception");
         state.value = ApiState.error;
       }
@@ -62,6 +66,18 @@ class ChatTextController extends GetxController {
     }
   }
 
-  TextEditingController searchTextController = TextEditingController();
+  addServerMessage(List<TextCompletionData> choices) {
+    for (int i = 0; i < choices.length; i++) {
+      messages.insert(i, choices[i]);
+    }
+  }
 
+  addMyMessage() {
+    // {"text":":\n\nWell, there are a few things that you can do to increase","index":0,"logprobs":null,"finish_reason":"length"}
+    TextCompletionData text = TextCompletionData(
+        text: searchTextController.text, index: -999999, finish_reason: "");
+    messages.insert(0, text);
+  }
+
+  TextEditingController searchTextController = TextEditingController();
 }
