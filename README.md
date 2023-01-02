@@ -2,6 +2,10 @@
 
 A new chat  gpt  project.
 
+
+<img src="https://github.com/xihadulislam/chat_gpt_flutter/blob/master/ss/home.png" alt="alt home">
+
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
