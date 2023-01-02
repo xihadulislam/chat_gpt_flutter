@@ -18,34 +18,32 @@ class ChatTextView extends GetView<ChatTextController> {
         title: const Text('Chat GPT Text'),
         centerTitle: true,
       ),
-      body: Center(
-        child: Obx(() => Column(children: [
-              Expanded(
-                child: ListView.builder(
-                  reverse: true,
-                  itemCount: controller.messages.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final textData = controller.messages[index];
-                    return textData.index == -999999
-                        ? MyTextCard(textData: textData)
-                        : TextCard(textData: textData);
-                  },
-                ),
+      body: Obx(() => Column(children: [
+            Expanded(
+              child: ListView.builder(
+                reverse: true,
+                itemCount: controller.messages.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final textData = controller.messages[index];
+                  return textData.index == -999999
+                      ? MyTextCard(textData: textData)
+                      : TextCard(textData: textData);
+                },
               ),
-              controller.state.value == ApiState.loading
-                  ? const Center(child: CircularProgressIndicator())
-                  : const SizedBox(),
-              const SizedBox(height: 12),
-              SearchTextFieldWidget(
-                  color: Colors.green.withOpacity(0.8),
-                  textEditingController: controller.searchTextController,
-                  onTap: () {
-                    controller.getTextCompletion(
-                        controller.searchTextController.text);
-                  }),
-              const SizedBox(height: 20),
-            ])),
-      ),
+            ),
+            controller.state.value == ApiState.loading
+                ? const Center(child: CircularProgressIndicator())
+                : const SizedBox(),
+            const SizedBox(height: 12),
+            SearchTextFieldWidget(
+                color: Colors.green.withOpacity(0.8),
+                textEditingController: controller.searchTextController,
+                onTap: () {
+                  controller
+                      .getTextCompletion(controller.searchTextController.text);
+                }),
+            const SizedBox(height: 20),
+          ])),
     );
   }
 }
