@@ -1,17 +1,16 @@
-# chat gpt flutter
+# Chat GPT Flutter
 
 A new chat gpt project.
 
-## Getting Started
-
-<img src="https://github.com/xihadulislam/chat_gpt_flutter/blob/master/ss/home.png" alt="alt home" style="width:40%;height:100">
-
-## Chat with AI
-<img src="https://github.com/xihadulislam/chat_gpt_flutter/blob/master/ss/text.png" alt="alt home" style="width:40%;height:100">
-
-## Image 
-<img src="https://github.com/xihadulislam/chat_gpt_flutter/blob/master/ss/image.png" alt="alt home" style="width:40%;height:100">
+## Development Setup
+Clone the repository and run the following commands:
+```
+flutter pub get
+flutter run
+```
 
 
+## Screenshots (Chat with AI)
 
+<img src="https://github.com/xihadulislam/chat_gpt_flutter/blob/master/ss/home.png" height="500em" /> <img src="https://github.com/xihadulislam/chat_gpt_flutter/blob/master/ss/text.png" height="500em" /><img src="https://github.com/xihadulislam/chat_gpt_flutter/blob/master/ss/image.png" height="500em" />
 
