@@ -13,7 +13,6 @@ flutter run
 ```
 
 
-
 ## Screenshots (Chat with AI)
 
 <img src="https://github.com/xihadulislam/chat_gpt_flutter/blob/master/ss/home.png" height="500em" /> &nbsp; &nbsp; 
