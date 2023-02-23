@@ -12,6 +12,14 @@ flutter pub get
 flutter run
 ```
 
+## Generate API keys
+
+Go to this website to create your api key
+https://platform.openai.com/account/api-keys
+
+after creating a api key put it on "OPEN_AI_KEY" key on lib/app/common/headers.dart
+
+
 
 ## Screenshots (Chat with AI)
 
