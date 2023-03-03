@@ -31,4 +31,3 @@ after creating a api key put it on "OPEN_AI_KEY" key on lib/app/common/headers.d
 <br/>
 
 ## 
-
