@@ -1,5 +1,5 @@
 const String OPEN_AI_KEY =
-    "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";
+    "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";
 
 const String baseURL = "https://api.openai.com/v1";
 

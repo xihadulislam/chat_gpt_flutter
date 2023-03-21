@@ -47,7 +47,7 @@ class TextCard extends StatelessWidget {
                       Share.share(textData.text);
                     },
                     child: const Icon(Icons.share, size: 28)),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 InkWell(
                     onTap: () {
                       Clipboard.setData(ClipboardData(text: textData.text));
